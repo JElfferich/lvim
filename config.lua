@@ -57,9 +57,11 @@ lvim.builtin.which_key.mappings["t"] = {
 lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.terminal.direction = 'horizontal'
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.lualine.style = 'default'
+lvim.builtin.telescope.defaults.vimgrep_arguments = { 'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -238,18 +240,23 @@ lvim.plugins = {
     end
   },
   {
-  "lukas-reineke/indent-blankline.nvim",
+    "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     setup = function()
       vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
+      vim.g.indent_blankline_char = "|"
       vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
       vim.g.indent_blankline_buftype_exclude = {"terminal"}
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
     end
   },
+  {
+    "dstein64/nvim-scrollview",
+    event = "BufRead"
+  }
 }
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
